@@ -1,14 +1,17 @@
-spring:
-  config:
-    activate:
-      on-profile: server1
-
-server-number: 1
+server-number : 0
 
 ---
 spring:
   config:
     activate:
-      on-profile: server2
+      on-profile: BLUE
+server:
+  port: 8080
 
-server-number: 2
+---
+spring:
+  config:
+    activate:
+      on-profile: GREEN
+server:
+  port: 8081
