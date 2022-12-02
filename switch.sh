@@ -28,8 +28,10 @@ TOTAL_SERVER=${#SERVERS[@]}
 true > servers_response
 
 for server in ${SERVERS[@]} ; do
+  # spring 서버들의 결과 파일들을 가져온다.
   scp ${server}:RESULT .
   cat RESULT >> servers_response
+echo "> $(cat servers_response)"
 if [ "$TOTAL_SERVER" -eq "$(grep -c "OK" servers_response)" ]; then
   echo "> 정상 배포 완료"
   echo "set \$ACTIVE_PORT $IDLE_PORT;" | sudo tee /etc/nginx/sites-available/port.conf
