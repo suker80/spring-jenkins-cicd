@@ -32,7 +32,7 @@ for server in ${SERVERS[@]} ; do
   cat RESULT >> servers_response
 if [ "$TOTAL_SERVER" -eq "$(grep -c "OK" servers_response)" ]; then
   echo "> 정상 배포 완료"
-  echo "set \$ACTIVE_PORT $IDLE_PORT" | sudo tee /etc/nginx/site-avaliables/port.conf
+  echo "set \$ACTIVE_PORT $IDLE_PORT;" | sudo tee /etc/nginx/sites-available/port.conf
   echo "> nginx 재시작"
   sudo systemctl reload nginx
     
