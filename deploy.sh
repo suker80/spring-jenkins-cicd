@@ -36,7 +36,7 @@ echo "> 10초 기다렸다가 Health Check"
 
 for i in {1..10} ;
 do
-echo "> Health Check까지 " "$(( 10 - i))"초 남음
+echo "> Health Check까지 " $(( 10 - i))초 남음
 
 sleep 1
 done
