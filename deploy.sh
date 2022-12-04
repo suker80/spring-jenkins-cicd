@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 HUB_REPOSITORY=suker800/spring-cicd
 # 현재 사용하고 있는 포트와 유휴 상태인 포트를 체크한다.
@@ -62,5 +62,5 @@ do
 done
 
 # 마지막으로 실행중이던 포트 종료
-docker kill $(docker ps -qf expose=$CURRENT_PORT) 2> /dev/null || echo "현재 실행중인 서버가 없습니다. CURRENT_PORT: $CURRENT_PORT"
+#docker kill $(docker ps -qf expose=$CURRENT_PORT) 2> /dev/null || echo "현재 실행중인 서버가 없습니다. CURRENT_PORT: $CURRENT_PORT"
 
