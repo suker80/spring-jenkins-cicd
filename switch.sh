@@ -49,7 +49,7 @@ else
   echo "스위치 하려고 켜놓은 서버 포트들을 전부 종료합니다."
   for server in ${SERVERS[@]} ; do
 
-    ssh $server docker kill $(ssh $server docker ps -qf expose=$IDLE_PORT) 2> /dev/null || echo "현재 실행중인 서버가 없습니다. CURRENT_PORT: $CURRENT_PORT"
+    ssh $server docker kill $(ssh $server docker ps -qf expose=$IDLE_PORT) 2> /dev/null || echo "현재 실행중인 서버가 없습니다. CURRENT_PORT: $IDLE_PORT"
   done
 fi
 
