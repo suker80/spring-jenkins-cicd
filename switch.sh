@@ -26,7 +26,7 @@ TOTAL_SERVER=${#SERVERS[@]}
 # 임시로 Spring 서버들의 응답을 저장할 파일을 하나 만든다.
 true > servers_response
 
-for server in ${SERVERS[@]} ; do
+for server in ${SERVERS[*]} ; do
   # spring 서버들의 결과 파일들을 가져온다.
   # 결과 파일 가져온걸 servers_response에 저장
   scp ${server}:RESULT .
@@ -40,17 +40,17 @@ if [ "$TOTAL_SERVER" -eq "$(grep -c "OK" servers_response)" ]; then
   echo "> nginx 재시작"
   sudo systemctl reload nginx
   # 스위칭 하기위해 spring 서버들의 docker 컨테이너를 내리자.
-  for server in ${SERVERS[@]} ; do
+  for server in ${SERVERS[*]} ; do
     echo "> server : "$server
-    echo ssh $server docker kill "$(ssh $server docker ps -qf expose=$CURRENT_PORT)"
+    echo "> ssh" $server docker kill "$(ssh $server docker ps -qf expose=$CURRENT_PORT)"
     ssh $server docker kill "$(ssh $server docker ps -qf expose=$CURRENT_PORT)" 2> /dev/null || echo "현재 실행중인 서버가 없습니다. CURRENT_PORT: $CURRENT_PORT"
   done
 else
   echo "> 배포 실패"
   echo "스위치 하려고 켜놓은 서버 포트들을 전부 종료합니다."
-  for server in ${SERVERS[@]} ; do
+  for server in ${SERVERS[*]} ; do
     echo "> server : "$server
-    echo ssh $server docker kill "$(ssh $server docker ps -qf expose=$IDLE_PORT)"
+    echo "> ssh $server docker kill "$(ssh $server docker ps -qf expose=$IDLE_PORT)""
     ssh $server docker kill "$(ssh $server docker ps -qf expose=$IDLE_PORT)" 2> /dev/null || echo "현재 실행중인 서버가 없습니다. CURRENT_PORT: $IDLE_PORT"
   done
 fi
