@@ -28,9 +28,9 @@ echo "> 다음 사용할 프로필 " $IDLE_PROFILE
 sudo docker pull $HUB_REPOSITORY
 
 # 도커를 통해 컨테이너를 실행시킨다.
-echo "도커 실행 " docker run -p $IDLE_PORT:$IDLE_PORT -e "-USE_PROFILE=$IDLE_PROFILE" $HUB_REPOSITORY
+echo "도커 실행 " docker run -p $IDLE_PORT:$IDLE_PORT -e "USE_PROFILE=$IDLE_PROFILE" $HUB_REPOSITORY
 
-nohup docker run -p $IDLE_PORT:$IDLE_PORT -e "-USE_PROFILE=$IDLE_PROFILE" $HUB_REPOSITORY > nohup.out 2>&1 &
+nohup docker run -p $IDLE_PORT:$IDLE_PORT -e "USE_PROFILE=$IDLE_PROFILE" $HUB_REPOSITORY > nohup.out 2>&1 &
 
 echo "> 10초 기다렸다가 Health Check"
 
